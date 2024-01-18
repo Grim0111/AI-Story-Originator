@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% load static %}
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>GRIM Story Generator</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/quill/quill.snow.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/quill/quill.bubble.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/simple-datatables/style.css' %}" rel="stylesheet">
+  <!-- Template Main CSS File -->
+  <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center">
+      <a href="/" class="logo d-flex align-items-center">
+        <center>
+        <span class="d-none d-lg-block align-items-center">AI Story Originator</span></center>
+      </a>
+    </div><!-- End Logo -->
+
+
+    <nav class="header-nav ms-auto">
+      <ul class="d-flex align-items-center">
+        <a href="/dashboard" ><button type="button" class="btn btn-warning" style="float: right;"><b>Dashboard</b></button></a>
+      </ul>
+    </nav>
+
+  </header>
+  <!-- End Header -->
+
+
+  <br><br><br><br>
+<div>
+
+    <section class="section">
+      <form method="post"> {% csrf_token %}
+
+      <div class="row">
+
+        <div class="col-lg-8">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Story Foundation</h5>
+              <!-- Story Input -->
+               <textarea id="story" class="col-lg-12" name="story" rows="15"  minlength="100" maxlength="500" oninput="updateCharCount()" required></textarea>
+            <p id="charCount">Characters: 0</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Categories</h5>
+              <!-- Category Selection -->
+
+        <div>
+          <ul class="list-group">
+          {% for category in categories %}
+            <li class="list-group-item">
+            <input type="checkbox" id="{{ category }}" name="categories" value="{{ category }}">
+            {{ category }}</li>
+          {% endfor %}
+            <!-- Add more categories as needed -->
+            </ul>
+        </div>
+        <br>
+        <!-- Custom Category Input Toggle -->
+        <ul class="list-group">
+            <li class="list-group-item">
+            <input type="checkbox" id="customCategoryToggle" name="customCategoryToggle">
+            Enter Your Own Category</li>
+        </ul>
+
+        <!-- Custom Category Input Field (Hidden by default) -->
+        <div id="customCategoryInput" style="display: none;">
+            <label for="customCategory">Enter Your Own Category:</label>
+            <input type="text" id="customCategory" name="customCategory" maxlength="50">
+        </div>
+
+
+            </div>
+          </div>
+
+        </div>
+
+        <br><br>
+
+      </div>
+        <center>
+        <button type="submit" class="btn btn-success">Generate</button>
+        </center>
+      </form>
+    </section>
+
+</div>
+
+<script>
+        // Script to show/hide custom category input based on the checkbox state
+        const customCategoryToggle = document.getElementById('customCategoryToggle');
+        const customCategoryInput = document.getElementById('customCategoryInput');
+
+        customCategoryToggle.addEventListener('change', function() {
+            customCategoryInput.style.display = customCategoryToggle.checked ? 'block' : 'none';
+        });
+
+        function updateCharCount() {
+            var textarea = document.getElementById("story");
+            var charCount = document.getElementById("charCount");
+
+            charCount.textContent = "Characters: " + textarea.value.length;
+        }
+    </script>
+
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'assets/vendor/apexcharts/apexcharts.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/chart.js/chart.umd.js' %}"></script>
+  <script src="{% static 'assets/vendor/echarts/echarts.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/quill/quill.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/simple-datatables/simple-datatables.js' %}"></script>
+  <script src="{% static 'assets/vendor/tinymce/tinymce.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+</body>
+</html>
