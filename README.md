@@ -33,3 +33,10 @@ To run the application, follow these steps:
 6. Return to the `Grim_Story_Generator` folder using `cd ..`.
 7. Run the command `python manage.py runserver` to start the application.
 8. Copy the IP address displayed in the terminal and paste it into your browser to access the site.
+
+## Solution Images
+![Page_1](https://i.ibb.co/dQBBgmR/Screenshot-2024-01-26-185202.png)
+
+![Page_2](https://i.ibb.co/3Y4cr1y/Screenshot-2024-01-26-185246.png)
+
+## Thank you!
